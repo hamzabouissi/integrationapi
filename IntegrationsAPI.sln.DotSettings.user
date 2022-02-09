@@ -1,0 +1,6 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e34d18b3_002D354f_002D418d_002Dbfe4_002D72d93163850d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="retrun_hotels_list_when_api_account_is_not_expired" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::D443C856-2484-4A75-8783-A3D1D5D0E5D7::net6.0::DomainLogic.Tests.RateHawkClientTest.retrun_hotels_list_when_api_account_is_not_expired&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
