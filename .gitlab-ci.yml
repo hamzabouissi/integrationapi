@@ -19,6 +19,7 @@ test_variable:
     - echo "$AWS_USERNAME"
     - echo "$AWS_ECR_PASS"
     - echo "$AWS_ACCOUNT_ID"
+    - echo "${AWS_ACCOUNT_ID}.dkr.ecr.region.amazonaws.com"
 
 
 
