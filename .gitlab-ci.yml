@@ -15,7 +15,9 @@ build:
     name: amazon/aws-cli
     entrypoint: [""]
   services:
-    - docker:dind
+    - name: docker:19.03.12-dind
+      alias: docker
+
   stage: build
   before_script:
     - amazon-linux-extras install docker
