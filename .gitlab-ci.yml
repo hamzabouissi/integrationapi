@@ -13,21 +13,13 @@ services:
   - docker:19.03.13-dind
 
 
-test_variable:
+
+build:
   stage: build
+  image: docker:19.03.13
+  before_script:
+    - echo "$AWS_ACCOUNT_ID.dkr.ecr.region.amazonaws.com/$DOCKER_IMAGE_NAME:$CI_COMMIT_SHA"
+    - docker login --username ${AWS_USERNAME} --password ${AWS_ECR_PASS} '${AWS_ACCOUNT_ID}.dkr.ecr.region.amazonaws.com'
   script:
-    - echo "$AWS_USERNAME"
-    - echo "$AWS_ECR_PASS"
-    - echo "$AWS_ACCOUNT_ID"
-    - echo "${AWS_ACCOUNT_ID}.dkr.ecr.region.amazonaws.com"
-
-
-
-# build:
-#   stage: build
-#   image: docker:19.03.13
-#   before_script:
-#     - docker login --username ${AWS_USERNAME} --password ${AWS_ECR_PASS} '${AWS_ACCOUNT_ID}.dkr.ecr.region.amazonaws.com'
-#   script:
-#     - docker build -t ${DOCKER_IMAGE_NAME} .
-#     - docker push ${DOCKER_IMAGE_NAME}
+    - docker build -t "$AWS_ACCOUNT_ID.dkr.ecr.region.amazonaws.com/$DOCKER_IMAGE_NAME:$CI_COMMIT_SHA" .
+    - docker push ${DOCKER_IMAGE_NAME}
