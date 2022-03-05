@@ -19,7 +19,8 @@ build:
   stage: build
   before_script:
     - amazon-linux-extras install docker
-    
+    - docker --version
+    - aws --version
   script:
     - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
     - docker build -t "$DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$CI_COMMIT_SHA" .
