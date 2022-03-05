@@ -1,28 +1,26 @@
-image: docker:19.03.13
-
 stages:
   - build
   - test
   - deploy
 
-services:
-  - docker:dind
 
-before_script:
-  - apk add --no-cache curl jq python py-pip
-  - pip install awscli
-  
 
 variables:
   DOCKER_TLS_CERTDIR: "/certs"
   DOCKER_REGISTRY: "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com"
+  DOCKER_HOST: tcp://docker:2376
  
 build:
+  image: 
+    name: amazon/aws-cli
+    entrypoint: [""]
+  services:
+    - docker:dind
   stage: build
   before_script:
-    - apk add --no-cache curl jq python py-pip
-    - pip install awscli
-    - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
+    - amazon-linux-extras install docker
+    
   script:
     - docker build -t "$DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$CI_COMMIT_SHA" .
+    - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
     - docker push "$DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$CI_COMMIT_SHA"
