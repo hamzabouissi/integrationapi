@@ -8,22 +8,17 @@ stages:
 
 variables:
   DOCKER_TLS_CERTDIR: "/certs"
-  AWS_REPO_URL: "$AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com"
+  DOCKER_REGISTRY: "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com"
   
-
-services:
-  - docker:19.03.13-dind
-  - amazon/aws-cli
-
-
 
 build:
   stage: build
-  image: docker:19.03.13
+  image: 
+    name: amazon/aws-cli
+    entrypoint: [""]
   before_script:
-    - aws --version
-    - echo ${AWS_REPO_URL}
-    - docker login --username ${AWS_USERNAME} --password ${AWS_ECR_PASS} $AWS_REPO_URL
+    - amazon-linux-extras install docker
+    - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
   script:
-    - docker build -t "$AWS_REPO_URL/$DOCKER_IMAGE_NAME:$CI_COMMIT_SHA" .
-    - docker push "$AWS_REPO_URL/$DOCKER_IMAGE_NAME:$CI_COMMIT_SHA"
+    - docker build -t "$DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$CI_COMMIT_SHA" .
+    - docker push "$DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$CI_COMMIT_SHA"
