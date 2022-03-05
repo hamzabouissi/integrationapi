@@ -19,7 +19,7 @@ build:
   image: docker:19.03.13
   before_script:
     - echo "$AWS_ACCOUNT_ID.dkr.ecr.region.amazonaws.com/$DOCKER_IMAGE_NAME:$CI_COMMIT_SHA"
-    - docker login --username ${AWS_USERNAME} --password ${AWS_ECR_PASS} '${AWS_ACCOUNT_ID}.dkr.ecr.region.amazonaws.com'
+    - docker login --username ${AWS_USERNAME} --password ${AWS_ECR_PASS} "$AWS_ACCOUNT_ID.dkr.ecr.region.amazonaws.com"
   script:
     - docker build -t "$AWS_ACCOUNT_ID.dkr.ecr.region.amazonaws.com/$DOCKER_IMAGE_NAME:$CI_COMMIT_SHA" .
     - docker push ${DOCKER_IMAGE_NAME}
