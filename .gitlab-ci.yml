@@ -13,6 +13,7 @@ variables:
 
 services:
   - docker:19.03.13-dind
+  - amazon/aws-cli
 
 
 
@@ -20,6 +21,7 @@ build:
   stage: build
   image: docker:19.03.13
   before_script:
+    - aws --version
     - echo ${AWS_REPO_URL}
     - docker login --username ${AWS_USERNAME} --password ${AWS_ECR_PASS} $AWS_REPO_URL
   script:
