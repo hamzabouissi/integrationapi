@@ -1,0 +1,30 @@
+stages:
+  - build
+  - test
+  - deploy
+
+
+
+variables:
+  
+  DOCKER_REGISTRY: "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com"
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+ 
+build:
+  image: 
+    name: amazon/aws-cli
+    entrypoint: [""]
+  services:
+    - name: docker:19.03.12-dind
+      alias: docker
+
+  stage: build
+  before_script:
+    - amazon-linux-extras install docker
+    - docker --version
+    - aws --version
+  script:
+    - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
+    - docker build -t "$DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$CI_COMMIT_SHA" .
+    - docker push "$DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$CI_COMMIT_SHA"
