@@ -12,7 +12,7 @@ namespace ECommerce.Web.Modules
     public class HealthCheckController : ControllerBase
     {
         [HttpGet()]
-        public IActionResult Get() => Ok("Good");
+        public IActionResult Get() => Ok("Good 2");
 
     }
 }

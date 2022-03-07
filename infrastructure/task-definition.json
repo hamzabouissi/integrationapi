@@ -1,0 +1,48 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "AWS CloudFormation Sample Template Route53_A: Sample template showing how to create an Amazon Route 53 A record that maps to the public IP address of an EC2 instance. It assumes that you already have a Hosted Zone registered with Amazon Route 53. **WARNING** This template creates an Amazon EC2 instance. You will be billed for the AWS resources used if you create a stack from this template.",
+    "Resources": {
+        "ECSTASK": {
+            "Type": "AWS::ECS::TaskDefinition",
+            "Properties": {
+                "ContainerDefinitions": [
+                    {
+                        "Name": "integration-ratehawk",
+                        "Image":"416d58f7a80b1eb4e5480cd42d9880f273af2e2c",
+                        "PortMappings": [
+                            {
+                                "ContainerPort": 80,
+                                "HostPort": 80,
+                                "Protocol": "tcp"
+                            },
+                            {
+                                "ContainerPort": 443,
+                                "HostPort": 443,
+                                "Protocol": "tcp"
+                            },
+                            {
+                                "ContainerPort": 22,
+                                "HostPort": 22,
+                                "Protocol": "tcp"
+                            }
+                        ]
+                    }
+                ],
+                "Cpu": 512,
+                "Memory": 1024,
+                "NetworkMode": "awsvpc",
+                "RequiresCompatibilities": [
+                    "FARGATE"
+                ],
+                "TaskRoleArn": "ecsTaskExecutionRole",
+                "ExecutionRoleArn": "ecsTaskExecutionRole",
+                "Tags": [
+                    {
+                        "Key": "created_by",
+                        "Value": "CloudFormation"
+                    }
+                ]
+            }
+        }
+    }
+}
