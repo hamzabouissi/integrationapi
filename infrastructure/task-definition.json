@@ -18,15 +18,11 @@
       ]
     }
   ],
-  "cpu": 512,
-  "memory": 1024,
+  "cpu": "512",
+  "memory": "1024",
+  "family":"deploy-app",
   "networkMode": "awsvpc",
   "taskRoleArn": "ecsTaskExecutionRole",
-  "executionRoleArn": "ecsTaskExecutionRole",
-  "tags": [
-    {
-      "Key": "created_by",
-      "Value": "CloudFormation"
-    }
-  ]
+  "executionRoleArn": "ecsTaskExecutionRole"
+  
 }
