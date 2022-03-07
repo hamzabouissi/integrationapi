@@ -16,7 +16,7 @@ env:
   ECR_REPOSITORY: cloudapp                                  # set this to your Amazon ECR repository name
   CONTAINER_NAME: ${{secrets.DOCKER_IMAGE_NAME}}           # set this to the name of the container in the
                                                   # containerDefinitions section of your task definition
-  DOCKER_FILE_PATH: ./Dockerfile
+  DOCKER_FILE_PATH: .
   ECS_SERVICE: Service-CF                 # set this to your Amazon ECS service name
   ECS_CLUSTER: Cluster-CF                 # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: infrastructure/task-definition.json # set this to the path to your Amazon ECS task definition
