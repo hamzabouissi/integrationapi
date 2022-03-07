@@ -1,35 +1,29 @@
 {
   "requiresCompatibilities": ["FARGATE"],
-  "ContainerDefinitions": [
+  "containerDefinitions": [
     {
-      "Name": "integration-ratehawk",
-      "Image": "416d58f7a80b1eb4e5480cd42d9880f273af2e2c",
-      "PortMappings": [
+      "name": "integration-ratehawk",
+      "image": "416d58f7a80b1eb4e5480cd42d9880f273af2e2c",
+      "portMappings": [
         {
-          "ContainerPort": 80,
-          "HostPort": 80,
-          "Protocol": "tcp"
+          "containerPort": 80,
+          "hostPort": 80,
+          "protocol": "tcp"
         },
         {
-          "ContainerPort": 443,
-          "HostPort": 443,
-          "Protocol": "tcp"
-        },
-        {
-          "ContainerPort": 22,
-          "HostPort": 22,
-          "Protocol": "tcp"
+          "containerPort": 443,
+          "hostPort": 443,
+          "protocol": "tcp"
         }
       ]
     }
   ],
-  "Cpu": 512,
-  "Memory": 1024,
-  "NetworkMode": "awsvpc",
-  "RequiresCompatibilities": ["FARGATE"],
-  "TaskRoleArn": "ecsTaskExecutionRole",
-  "ExecutionRoleArn": "ecsTaskExecutionRole",
-  "Tags": [
+  "cpu": 512,
+  "memory": 1024,
+  "networkMode": "awsvpc",
+  "taskRoleArn": "ecsTaskExecutionRole",
+  "executionRoleArn": "ecsTaskExecutionRole",
+  "tags": [
     {
       "Key": "created_by",
       "Value": "CloudFormation"
