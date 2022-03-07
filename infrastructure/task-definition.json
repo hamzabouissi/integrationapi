@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "integration-ratehawk",
-      "image": "416d58f7a80b1eb4e5480cd42d9880f273af2e2c",
+      "image": "182476924183.dkr.ecr.us-east-1.amazonaws.com/intergration-ratehawk:416d58f7a80b1eb4e5480cd42d9880f273af2e2c",
       "portMappings": [
         {
           "containerPort": 80,
